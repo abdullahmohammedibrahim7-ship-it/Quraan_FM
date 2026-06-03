@@ -30,7 +30,6 @@
     --border-color: var(--green-200);
   }
 
-  /* متغيرات الوضع الداكن (Dark Mode) */
   [data-theme="dark"] {
     --cream: #091a10;
     --text-main: #e2f5e9;
@@ -47,9 +46,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Noto Naskh Arabic', serif;
     background: var(--cream);
@@ -59,7 +56,7 @@
     transition: background 0.3s, color 0.3s;
   }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -74,7 +71,6 @@
     justify-content: space-between;
     transition: background 0.3s, border-color 0.3s;
   }
-
   .nav-right {
     display: flex;
     align-items: center;
@@ -82,29 +78,20 @@
     width: 100%;
     justify-content: space-between;
   }
-
   @media (min-width: 769px) {
-    .nav-right {
-      justify-content: flex-start;
-      width: auto;
-    }
+    .nav-right { justify-content: flex-start; width: auto; }
   }
-
   .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
+    display: flex; align-items: center; gap: 0.6rem;
     font-family: 'Amiri', serif;
     font-size: 1.15rem;
     color: var(--text-main);
     font-weight: 700;
-    letter-spacing: 0.01em;
     cursor: pointer;
     text-decoration: none;
     transition: opacity 0.2s;
   }
   .nav-logo:hover { opacity: 0.75; }
-  
   .nav-logo-icon {
     width: 34px; height: 34px;
     background: #166534;
@@ -112,14 +99,9 @@
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .nav-logo-icon svg { display: block; }
-
   .nav-links {
-    display: flex;
-    gap: 0.25rem;
-    list-style: none;
+    display: flex; gap: 0.25rem; list-style: none;
   }
-
   .nav-links a {
     color: var(--text-main);
     text-decoration: none;
@@ -129,547 +111,345 @@
     transition: all 0.2s;
     white-space: nowrap;
   }
-
   .nav-links a:hover, .nav-links a.active {
     background: var(--green-100);
     color: var(--green-900);
   }
-
-  /* زر القائمة للموبايل (Menu Toggle) */
   .menu-toggle {
     display: none;
-    background: none;
-    border: none;
+    background: none; border: none;
     color: var(--text-main);
     cursor: pointer;
     font-size: 1.5rem;
-    align-items: center;
-    justify-content: center;
+    align-items: center; justify-content: center;
   }
-
-  /* زر الـ Dark Mode وتنسيق الأزرار اليسارية */
-  .nav-left-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
+  .nav-left-controls { display: flex; align-items: center; gap: 0.5rem; }
   .theme-toggle {
     background: none;
     border: 1px solid var(--border-color);
     border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
     cursor: pointer;
     color: var(--text-main);
     transition: all 0.2s;
   }
-  .theme-toggle:hover {
-    background: var(--green-100);
-  }
-
-  /* شاشات الموبايل والتابلت الصغيرة */
+  .theme-toggle:hover { background: var(--green-100); }
   @media (max-width: 768px) {
-    .menu-toggle {
-      display: flex;
-    }
-
+    .menu-toggle { display: flex; }
     .nav-links {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 62px;
-      left: 0;
-      right: 0;
+      display: none; flex-direction: column;
+      position: absolute; top: 62px; left: 0; right: 0;
       background: var(--card-bg);
       border-bottom: 1px solid var(--border-color);
-      padding: 1rem;
-      gap: 0.5rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      padding: 1rem; gap: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
     }
-
-    .nav-links.open {
-      display: flex;
-    }
-
-    .nav-links a {
-      display: block;
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-    }
+    .nav-links.open { display: flex; }
+    .nav-links a { display: block; width: 100%; padding: 0.75rem 1rem; border-radius: 8px; }
   }
 
-  /* PAGES */
-  .page {
-    display: none;
-    min-height: 100vh;
-    padding-top: 62px;
-  }
+  /* ── PAGES ── */
+  .page { display: none; min-height: 100vh; padding-top: 62px; }
   .page.active { display: block; }
 
-  /* ===================== HOME ===================== */
+  /* ── HOME ── */
   #home {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    padding-top: 62px;
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 100vh; text-align: center;
+    position: relative; overflow: hidden; padding-top: 62px;
   }
   #home.active { display: flex; }
-
   .home-bg {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background:
       radial-gradient(ellipse 70% 60% at 50% 40%, rgba(22,163,74,0.07) 0%, transparent 70%),
       radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,150,12,0.06) 0%, transparent 60%);
   }
-
   .geometric-border {
     position: absolute;
     top: 80px; left: 50%; transform: translateX(-50%);
-    width: min(560px, 90vw);
-    height: min(560px, 90vw);
+    width: min(560px, 90vw); height: min(560px, 90vw);
     border: 1px solid var(--border-color);
-    border-radius: 50%;
-    opacity: 0.5;
+    border-radius: 50%; opacity: 0.5;
     animation: spin 60s linear infinite;
   }
   .geometric-border::before {
-    content: '';
-    position: absolute;
-    inset: 18px;
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    opacity: 0.7;
+    content: ''; position: absolute; inset: 18px;
+    border: 1px solid var(--border-color); border-radius: 50%; opacity: 0.7;
   }
   .geometric-border::after {
-    content: '';
-    position: absolute;
-    inset: 40px;
-    border: 1px dashed var(--border-color);
-    border-radius: 50%;
+    content: ''; position: absolute; inset: 40px;
+    border: 1px dashed var(--border-color); border-radius: 50%;
   }
-
   @keyframes spin { to { transform: translateX(-50%) rotate(360deg); } }
-
   .home-content {
-    position: relative;
-    z-index: 2;
-    padding: 2rem 1rem;
-    width: 100%;
-    max-width: 600px;
+    position: relative; z-index: 2;
+    padding: 2rem 1rem; width: 100%; max-width: 600px;
   }
-
   .bismillah {
     font-family: 'Amiri', serif;
     font-size: clamp(1.1rem, 4vw, 1.7rem);
-    color: var(--gold);
-    letter-spacing: 0.05em;
-    margin-bottom: 2rem;
-    opacity: 0.85;
+    color: var(--gold); letter-spacing: 0.05em;
+    margin-bottom: 2rem; opacity: 0.85;
   }
-
   .home-title {
     font-family: 'Amiri', serif;
     font-size: clamp(2.2rem, 8vw, 5rem);
-    color: var(--text-main);
-    line-height: 1.2;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
+    color: var(--text-main); line-height: 1.2;
+    font-weight: 700; margin-bottom: 1.5rem;
   }
-
-  [data-theme="dark"] .home-title span {
-    color: #4ade80;
-  }
-  .home-title span {
-    color: #16a34a;
-    display: block;
-  }
-
+  [data-theme="dark"] .home-title span { color: #4ade80; }
+  .home-title span { color: #16a34a; display: block; }
   .home-subtitle {
     font-size: clamp(0.85rem, 3.5vw, 1.05rem);
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.8;
+    color: var(--text-muted); margin-bottom: 2rem;
+    max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.8;
   }
-
   .home-freq {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--green-100);
-    border: 1px solid var(--border-color);
-    border-radius: 30px;
-    padding: 0.5rem 1rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--green-100); border: 1px solid var(--border-color);
+    border-radius: 30px; padding: 0.5rem 1rem;
     font-size: clamp(0.75rem, 3vw, 0.88rem);
-    color: var(--green-900);
-    margin-bottom: 2rem;
-    max-width: 100%;
+    color: var(--green-900); margin-bottom: 2rem; max-width: 100%;
   }
-
   .freq-dot {
-    width: 8px; height: 8px;
-    background: #22c55e;
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-    flex-shrink: 0;
+    width: 8px; height: 8px; background: #22c55e;
+    border-radius: 50%; animation: pulse 2s ease-in-out infinite; flex-shrink: 0;
   }
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.5; transform: scale(0.8); }
   }
-
   .btn-listen {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    background: #166534;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    padding: 0.8rem 1.8rem;
-    font-family: 'Noto Naskh Arabic', serif;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.25s;
-    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: #166534; color: white; border: none;
+    border-radius: 50px; padding: 0.8rem 1.8rem;
+    font-family: 'Noto Naskh Arabic', serif; font-size: 0.95rem;
+    cursor: pointer; transition: all 0.25s; text-decoration: none;
   }
-
   .btn-listen:hover {
-    background: #15803d;
-    transform: translateY(-2px);
+    background: #15803d; transform: translateY(-2px);
     box-shadow: 0 8px 24px var(--shadow-green);
   }
-
   .play-icon {
     width: 28px; height: 28px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    background: rgba(255,255,255,0.2); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
 
-  /* ===================== LIVE ===================== */
+  /* ── LIVE ── */
   #live {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 80px 1rem 2rem;
-    background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 100%);
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 100vh; padding: 80px 1rem 2rem;
   }
   #live.active { display: flex; }
-
   .live-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 2rem 1.5rem;
-    max-width: 440px;
-    width: 100%;
-    text-align: center;
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 24px; padding: 2rem 1.5rem;
+    max-width: 440px; width: 100%; text-align: center;
     box-shadow: 0 4px 40px var(--shadow-green);
     transition: background 0.3s, border-color 0.3s;
   }
-
   .live-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: #fee2e2;
-    color: #b91c1c;
-    border-radius: 20px;
-    padding: 0.3rem 0.9rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: #fee2e2; color: #b91c1c;
+    border-radius: 20px; padding: 0.3rem 0.9rem;
+    font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
   }
-  [data-theme="dark"] .live-badge {
-    background: #7f1d1d;
-    color: #fca5a5;
-  }
-
+  [data-theme="dark"] .live-badge { background: #7f1d1d; color: #fca5a5; }
   .live-dot {
-    width: 7px; height: 7px;
-    background: #ef4444;
-    border-radius: 50%;
-    animation: pulse 1.2s ease-in-out infinite;
+    width: 7px; height: 7px; background: #ef4444;
+    border-radius: 50%; animation: pulse 1.2s ease-in-out infinite;
   }
-
   .live-title {
-    font-family: 'Amiri', serif;
-    font-size: 1.6rem;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
+    font-family: 'Amiri', serif; font-size: 1.6rem;
+    color: var(--text-main); margin-bottom: 0.5rem;
   }
+  .live-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; }
 
-  .live-sub {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-  }
-
-  /* ===================== SHEIKH ===================== */
-  #sheikh {
-    display: none;
-    padding-top: 62px;
-  }
+  /* ── SHEIKH ── */
+  #sheikh { display: none; padding-top: 62px; }
   #sheikh.active { display: block; }
-
   .sheikh-hero {
     background: linear-gradient(135deg, #14532d 0%, #15803d 100%);
-    padding: 3rem 1rem 2rem;
-    text-align: center;
-    color: white;
-    position: relative;
-    overflow: hidden;
+    padding: 3rem 1rem 2rem; text-align: center; color: white;
+    position: relative; overflow: hidden;
   }
-
   .sheikh-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-
-  .sheikh-name {
-    font-family: 'Amiri', serif;
-    font-size: clamp(1.5rem, 5vw, 2.4rem);
-    margin-bottom: 0.5rem;
-  }
-
-  .sheikh-laqab {
-    font-size: 0.9rem;
-    opacity: 0.75;
-    margin-bottom: 0.5rem;
-  }
-
-  .sheikh-dates {
-    font-size: 0.8rem;
-    opacity: 0.6;
-  }
-
-  .sheikh-body {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
+  .sheikh-name { font-family: 'Amiri', serif; font-size: clamp(1.5rem, 5vw, 2.4rem); margin-bottom: 0.5rem; }
+  .sheikh-laqab { font-size: 0.9rem; opacity: 0.75; margin-bottom: 0.5rem; }
+  .sheikh-dates { font-size: 0.8rem; opacity: 0.6; }
+  .sheikh-body { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; }
   .news-banner {
-    background: var(--green-100);
-    border: 1px solid var(--border-color);
-    border-right: 4px solid #16a34a;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 2rem;
-    display: flex;
-    gap: 0.8rem;
-    align-items: flex-start;
+    background: var(--green-100); border: 1px solid var(--border-color);
+    border-right: 4px solid #16a34a; border-radius: 10px;
+    padding: 1rem; margin-bottom: 2rem;
+    display: flex; gap: 0.8rem; align-items: flex-start;
   }
+  .news-icon { font-size: 1.3rem; line-height: 1; margin-top: 0.1rem; }
+  .news-text strong { display: block; color: var(--green-900); font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .news-text p { color: var(--text-main); font-size: 0.85rem; line-height: 1.7; }
 
-  .news-icon {
-    font-size: 1.3rem;
-    line-height: 1;
-    margin-top: 0.1rem;
+  /* ── PRAYER ── */
+  #prayer { display: none; padding-top: 62px; }
+  #prayer.active { display: block; }
+  .gov-select-wrap {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem;
   }
-
-  .news-text strong {
-    display: block;
-    color: var(--green-900);
-    font-size: 0.95rem;
-    margin-bottom: 0.25rem;
+  .gov-select-wrap label { font-size: 0.92rem; color: var(--text-muted); white-space: nowrap; }
+  select#govSelect {
+    font-family: 'Noto Naskh Arabic', serif; font-size: 0.9rem;
+    background: var(--card-bg); color: var(--text-main);
+    border: 1px solid var(--border-color); border-radius: 30px;
+    padding: 0.45rem 1rem; cursor: pointer; outline: none;
+    transition: border-color 0.2s; max-width: 220px;
   }
-
-  .news-text p {
-    color: var(--text-main);
-    font-size: 0.85rem;
-    line-height: 1.7;
+  select#govSelect:focus { border-color: var(--green-500); }
+  .date-row {
+    text-align: center; font-family: 'Amiri', serif;
+    font-size: 0.95rem; color: var(--text-muted);
+    margin-bottom: 1.25rem; letter-spacing: 0.02em;
   }
-
-  /* ===================== ABOUT ===================== */
-  #about {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 80px 1rem 2rem;
+  .prayers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.85rem; margin-bottom: 1.5rem;
+  }
+  .prayer-card {
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 16px; padding: 1rem 0.75rem;
+    text-align: center; transition: all 0.25s; position: relative;
+  }
+  .prayer-card.next-prayer {
+    border: 2px solid var(--green-500);
+    box-shadow: 0 4px 20px var(--shadow-green);
+  }
+  .prayer-card.passed { opacity: 0.5; }
+  .prayer-icon { font-size: 1.6rem; margin-bottom: 0.4rem; display: block; }
+  .prayer-name { font-family: 'Amiri', serif; font-size: 1.05rem; color: var(--text-main); margin-bottom: 0.25rem; }
+  .prayer-time { font-size: 1.15rem; font-weight: 700; color: var(--green-700); letter-spacing: 0.05em; }
+  [data-theme="dark"] .prayer-time { color: var(--green-400); }
+  .next-badge {
+    position: absolute; top: -10px; right: 50%; transform: translateX(50%);
+    background: var(--green-600); color: white;
+    font-size: 0.65rem; padding: 0.18rem 0.6rem;
+    border-radius: 20px; white-space: nowrap;
+  }
+  .countdown-card {
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 20px; padding: 1.5rem 1rem; text-align: center;
+    box-shadow: 0 4px 30px var(--shadow-green); margin-bottom: 1.5rem;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .countdown-label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .countdown-prayer { font-family: 'Amiri', serif; font-size: 1.3rem; color: var(--text-main); margin-bottom: 0.75rem; }
+  .countdown-timer { display: flex; justify-content: center; gap: 0.6rem; align-items: flex-end; }
+  .time-block { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+  .time-num {
+    background: var(--green-100); border: 1px solid var(--border-color);
+    border-radius: 10px; padding: 0.4rem 0.7rem;
+    font-size: 1.6rem; font-weight: 700; color: var(--green-800);
+    min-width: 56px; font-family: monospace; letter-spacing: 0.05em;
     text-align: center;
-    background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 100%);
+  }
+  [data-theme="dark"] .time-num { color: var(--green-400); }
+  .time-label { font-size: 0.72rem; color: var(--text-muted); }
+  .sep { font-size: 1.6rem; font-weight: 700; color: var(--green-600); margin-bottom: 0.35rem; line-height: 1; }
+  .adhan-note {
+    background: var(--green-100); border: 1px solid var(--border-color);
+    border-right: 3px solid var(--gold); border-radius: 10px;
+    padding: 0.75rem 1rem; font-family: 'Amiri', serif;
+    font-size: 0.95rem; color: var(--text-main);
+    text-align: center; line-height: 1.9;
+  }
+  .loading-msg { text-align: center; color: var(--text-muted); font-size: 0.88rem; padding: 2rem 0; }
+
+  /* ── ABOUT ── */
+  #about {
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 100vh; padding: 80px 1rem 2rem;
+    text-align: center;
   }
   #about.active { display: flex; }
-
   .about-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 2rem 1.25rem;
-    max-width: 560px;
-    width: 100%;
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 20px; padding: 2rem 1.25rem;
+    max-width: 560px; width: 100%;
     box-shadow: 0 4px 30px var(--shadow-green);
     transition: background 0.3s, border-color 0.3s;
   }
-
   .about-avatar {
-    width: 70px; height: 70px;
-    border-radius: 50%;
+    width: 70px; height: 70px; border-radius: 50%;
     background: linear-gradient(135deg, #bbf7d0, #4ade80);
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 1.2rem;
-    font-family: 'Amiri', serif;
-    font-size: 1.6rem;
-    color: #052e16;
+    font-family: 'Amiri', serif; font-size: 1.6rem; color: #052e16;
   }
-
-  .about-name {
-    font-family: 'Amiri', serif;
-    font-size: 1.5rem;
-    color: var(--text-main);
-    margin-bottom: 0.3rem;
-  }
-
-  .about-role {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 0.8rem;
-  }
-
+  .about-name { font-family: 'Amiri', serif; font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.3rem; }
+  .about-role { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem; }
   .about-dua {
-    font-size: 0.85rem;
-    color: var(--text-main);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: var(--green-100);
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
+    font-size: 0.85rem; color: var(--text-main); line-height: 1.8;
+    margin-bottom: 1.5rem; padding: 1rem;
+    background: var(--green-100); border-radius: 10px; border: 1px solid var(--border-color);
   }
-
   .quran-verse {
-    font-family: 'Amiri', serif;
-    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-    color: var(--text-main);
-    line-height: 2.1;
-    direction: rtl;
-    text-align: right;
-    background: var(--green-100);
-    border: 1px solid var(--border-color);
-    border-right: 3px solid var(--gold);
-    border-radius: 10px;
-    padding: 1rem;
-    margin-top: 1.5rem;
+    font-family: 'Amiri', serif; font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    color: var(--text-main); line-height: 2.1; direction: rtl; text-align: right;
+    background: var(--green-100); border: 1px solid var(--border-color);
+    border-right: 3px solid var(--gold); border-radius: 10px; padding: 1rem; margin-top: 1.5rem;
   }
+  .verse-ref { display: block; text-align: left; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.6rem; font-family: 'Noto Naskh Arabic', serif; }
 
-  .verse-ref {
-    display: block;
-    text-align: left;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 0.6rem;
-    font-family: 'Noto Naskh Arabic', serif;
-  }
-
-  footer {
-    text-align: center;
-    padding: 1.5rem 1rem;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    border-top: 1px solid var(--border-color);
-    background: var(--card-bg);
-    transition: background 0.3s, border-color 0.3s;
-  }
-
+  /* ── RECITER CARDS ── */
   .reciter-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 1.25rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 16px; padding: 1.25rem; cursor: pointer;
+    transition: all 0.2s; position: relative; overflow: hidden;
   }
   .reciter-card:hover {
-    border-color: var(--green-300);
-    transform: translateY(-2px);
+    border-color: var(--green-300); transform: translateY(-2px);
     box-shadow: 0 6px 20px var(--shadow-green);
   }
   .reciter-card.featured {
     border-color: #4ade80;
     background: linear-gradient(135deg, var(--card-bg) 80%, var(--green-100));
   }
-  .reciter-header {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    margin-bottom: 0.75rem;
-  }
+  .reciter-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem; }
   .reciter-icon {
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: var(--green-100);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Amiri', serif;
-    font-size: 1.2rem;
-    color: var(--green-900);
-    flex-shrink: 0;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--green-100); display: flex; align-items: center; justify-content: center;
+    font-family: 'Amiri', serif; font-size: 1.2rem; color: var(--green-900); flex-shrink: 0;
   }
-  .reciter-card.featured .reciter-icon {
-    background: #166534;
-    color: white;
-  }
-  .reciter-name {
-    font-family: 'Amiri', serif;
-    font-size: 1.05rem;
-    color: var(--text-main);
-    margin-bottom: 0.15rem;
-    line-height: 1.3;
-  }
-  .reciter-laqab {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-  }
-  .reciter-bio {
-    font-size: 0.84rem;
-    color: var(--text-main);
-    opacity: 0.9;
-    line-height: 1.7;
-    margin-bottom: 0.75rem;
-  }
-  .reciter-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
+  .reciter-card.featured .reciter-icon { background: #166534; color: white; }
+  .reciter-name { font-family: 'Amiri', serif; font-size: 1.05rem; color: var(--text-main); margin-bottom: 0.15rem; line-height: 1.3; }
+  .reciter-laqab { font-size: 0.78rem; color: var(--text-muted); }
+  .reciter-bio { font-size: 0.84rem; color: var(--text-main); opacity: 0.9; line-height: 1.7; margin-bottom: 0.75rem; }
+  .reciter-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .rtag {
-    background: var(--green-100);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 0.2rem 0.65rem;
-    font-size: 0.72rem;
-    color: var(--green-900);
+    background: var(--green-100); border: 1px solid var(--border-color);
+    border-radius: 20px; padding: 0.2rem 0.65rem;
+    font-size: 0.72rem; color: var(--green-900);
   }
   .featured-badge {
-    position: absolute;
-    top: 10px; left: 10px;
-    background: #15803d;
-    color: white;
-    font-size: 0.65rem;
-    padding: 0.2rem 0.55rem;
-    border-radius: 20px;
+    position: absolute; top: 10px; left: 10px;
+    background: #15803d; color: white;
+    font-size: 0.65rem; padding: 0.2rem 0.55rem; border-radius: 20px;
+  }
+
+  footer {
+    text-align: center; padding: 1.5rem 1rem;
+    font-size: 0.78rem; color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    background: var(--card-bg);
+    transition: background 0.3s, border-color 0.3s;
   }
 </style>
 </head>
@@ -677,10 +457,8 @@
 
 <nav>
   <div class="nav-right">
-    <button class="menu-toggle" onclick="toggleMenu()" title="القائمة">
-      ☰
-    </button>
-    <a class="nav-logo" href="#" onclick="showPage('live'); closeMenu(); return false;">
+    <button class="menu-toggle" onclick="toggleMenu()" title="القائمة">☰</button>
+    <a class="nav-logo" href="#" onclick="showPage('home'); closeMenu(); return false;">
       <div class="nav-logo-icon">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="3" y="2" width="14" height="16" rx="2" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.2"/>
@@ -695,11 +473,11 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#" onclick="showPage('home'); closeMenu();" class="active" id="nav-home">الرئيسية</a></li>
       <li><a href="#" onclick="showPage('live'); closeMenu();" id="nav-live">البث المباشر</a></li>
+      <li><a href="#" onclick="showPage('prayer'); closeMenu();" id="nav-prayer">مواقيت الصلاة</a></li>
       <li><a href="#" onclick="showPage('sheikh'); closeMenu();" id="nav-sheikh">القرّاء</a></li>
       <li><a href="#" onclick="showPage('about'); closeMenu();" id="nav-about">عن الموقع</a></li>
     </ul>
   </div>
-
   <div class="nav-left-controls">
     <button class="theme-toggle" onclick="toggleTheme()" title="تبديل المظهر">
       <svg id="themeIcon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -709,19 +487,14 @@
   </div>
 </nav>
 
+<!-- ══════════ HOME ══════════ -->
 <section id="home" class="page active">
   <div class="home-bg"></div>
   <div class="geometric-border"></div>
   <div class="home-content">
     <p class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-    <h1 class="home-title">
-      إذاعة
-      <span>القرآن الكريم</span>
-    </h1>
-    <p class="home-subtitle">
-      بث مستمر على مدار الساعة من القاهرة<br>
-      تلاوات لكبار القراء · برامج دينية · كنوز قرآنية
-    </p>
+    <h1 class="home-title">إذاعة<span>القرآن الكريم</span></h1>
+    <p class="home-subtitle">بث مستمر على مدار الساعة من القاهرة<br>تلاوات لكبار القراء · برامج دينية · كنوز قرآنية</p>
     <div class="home-freq">
       <span class="freq-dot"></span>
       إذاعة القرآن الكريم — FM 98.2 · القاهرة
@@ -736,25 +509,22 @@
   </div>
 </section>
 
+<!-- ══════════ LIVE ══════════ -->
 <section id="live" class="page">
   <div class="live-card">
     <div class="live-badge">
       <span class="live-dot"></span>
       بث مباشر
     </div>
-
     <h2 class="live-title">إذاعة القرآن الكريم</h2>
     <p class="live-sub">من القاهرة · FM 98.2 · الهيئة الوطنية للإعلام</p>
-
     <audio id="quranAudio" preload="none">
       <source src="https://stream.radiojar.com/8s5u5tpdtwzuv" type="audio/mpeg">
     </audio>
-
-    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1.5rem; text-align:center;">
+    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.5rem;text-align:center;">
       البث الصوتي المباشر — إذاعة القرآن الكريم القاهرة FM 98.2
     </p>
-
-    <button id="playBtn" class="btn-listen" onclick="togglePlayback()" style="display:inline-flex; justify-content:center; width:100%; border:none; box-sizing:border-box;">
+    <button id="playBtn" class="btn-listen" onclick="togglePlayback()" style="display:inline-flex;justify-content:center;width:100%;border:none;box-sizing:border-box;">
       <span class="play-icon" id="btnIcon">
         <svg id="svgIcon" width="12" height="14" viewBox="0 0 12 14" fill="white">
           <path d="M1 1l10 6-10 6z"/>
@@ -765,13 +535,91 @@
   </div>
 </section>
 
+<!-- ══════════ PRAYER ══════════ -->
+<section id="prayer" class="page">
+  <div class="sheikh-hero">
+    <h2 class="sheikh-name">مواقيت الصلاة</h2>
+    <p class="sheikh-laqab">اختر محافظتك لعرض مواقيت اليوم</p>
+    <p class="sheikh-dates">يتجدد تلقائيًا · بتوقيت مصر</p>
+  </div>
+  <div class="sheikh-body" style="max-width:700px;">
+
+    <div class="gov-select-wrap">
+      <label for="govSelect">📍 المحافظة:</label>
+      <select id="govSelect" onchange="loadPrayers()">
+        <option value="Cairo">القاهرة</option>
+        <option value="Giza">الجيزة</option>
+        <option value="Alexandria">الإسكندرية</option>
+        <option value="Luxor">الأقصر</option>
+        <option value="Aswan">أسوان</option>
+        <option value="Assiut">أسيوط</option>
+        <option value="Sohag">سوهاج</option>
+        <option value="Qena">قنا</option>
+        <option value="Minya">المنيا</option>
+        <option value="Beni Suef">بني سويف</option>
+        <option value="Faiyum">الفيوم</option>
+        <option value="Port Said">بورسعيد</option>
+        <option value="Suez">السويس</option>
+        <option value="Ismailia">الإسماعيلية</option>
+        <option value="Damietta">دمياط</option>
+        <option value="Dakahlia">الدقهلية</option>
+        <option value="Sharqia">الشرقية</option>
+        <option value="Kafr El Sheikh">كفر الشيخ</option>
+        <option value="Gharbia">الغربية</option>
+        <option value="Monufia">المنوفية</option>
+        <option value="Qalyubia">القليوبية</option>
+        <option value="Beheira">البحيرة</option>
+        <option value="Matrouh">مطروح</option>
+        <option value="North Sinai">شمال سيناء</option>
+        <option value="South Sinai">جنوب سيناء</option>
+        <option value="Red Sea">البحر الأحمر</option>
+        <option value="New Valley">الوادي الجديد</option>
+      </select>
+    </div>
+
+    <div class="date-row" id="dateRow">جاري التحميل…</div>
+    <div id="loadingMsg" class="loading-msg">جاري جلب مواقيت الصلاة…</div>
+    <div id="prayerErrorMsg" class="news-banner" style="display:none;border-right-color:#ef4444;"></div>
+
+    <div id="prayerContent" style="display:none;">
+      <div class="countdown-card">
+        <p class="countdown-label">الوقت المتبقي على</p>
+        <p class="countdown-prayer" id="nextPrayerName">—</p>
+        <div class="countdown-timer">
+          <div class="time-block">
+            <div class="time-num" id="cdH">00</div>
+            <div class="time-label">ساعة</div>
+          </div>
+          <div class="sep">:</div>
+          <div class="time-block">
+            <div class="time-num" id="cdM">00</div>
+            <div class="time-label">دقيقة</div>
+          </div>
+          <div class="sep">:</div>
+          <div class="time-block">
+            <div class="time-num" id="cdS">00</div>
+            <div class="time-label">ثانية</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prayers-grid" id="prayersGrid"></div>
+
+      <div class="adhan-note">
+        اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ، وَالصَّلَاةِ الْقَائِمَةِ، آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ SHEIKH ══════════ -->
 <section id="sheikh" class="page">
   <div class="sheikh-hero">
     <h2 class="sheikh-name">قرّاء إذاعة القرآن الكريم</h2>
     <p class="sheikh-laqab">أعلام التلاوة · الجيل الذهبي للإذاعة المصرية</p>
     <p class="sheikh-dates">إذاعة القرآن الكريم من القاهرة · منذ ١٩٦٤</p>
   </div>
-
   <div class="sheikh-body">
     <div class="news-banner">
       <span class="news-icon">📢</span>
@@ -780,21 +628,19 @@
         <p>بدأت إذاعة القرآن الكريم بثَّ ختمة مرتلة نادرة للشيخ المنشاوي للمرة الأولى منذ تسجيلها في الستينيات — بعد ٦٠ عامًا من حفظها في الأرشيف.</p>
       </div>
     </div>
-
-    <div id="reciters-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; margin-bottom:2rem;"></div>
+    <div id="reciters-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:2rem;"></div>
   </div>
 </section>
 
+<!-- ══════════ ABOUT ══════════ -->
 <section id="about" class="page">
   <div class="about-card">
     <div class="about-avatar">ع</div>
     <h2 class="about-name">عبدالله محمد إبراهيم</h2>
     <p class="about-role">طالب بكلية الحاسبات والمعلومات — جامعة القاهرة</p>
-
     <p class="about-dua">
       أسأل الله العظيم أن يوفقني وإياكم في الدنيا والآخرة، وأن يرزقنا من واسع نعيمه ورحمته، وأن يتقبَّل منا صالح الأعمال.
     </p>
-
     <div class="quran-verse">
       فَإِذَا قَضَيْتُم مَّنَـٰسِكَكُمْ فَٱذْكُرُوا۟ ٱللَّهَ كَذِكْرِكُمْ ءَابَآءَكُمْ أَوْ أَشَدَّ ذِكْرًۭا ۗ فَمِنَ ٱلنَّاسِ مَن يَقُولُ رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا وَمَا لَهُۥ فِى ٱلْـَٔاخِرَةِ مِنْ خَلَـٰقٍۢ ﴿٢٠٠﴾ وَمِنْهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا حَسَنَةًۭ وَفِى ٱلْـَٔاخِرَةِ حَسَنَةًۭ وَقِنَا عَذَابَ ٱلنَّارِ ﴿٢٠١﴾
       <span class="verse-ref">سورة البقرة — الآيتان ٢٠٠–٢٠١</span>
@@ -807,175 +653,184 @@
 </footer>
 
 <script>
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    
-    // للتعامل مع العناصر اللي ممكن متكونش موجودة في الـ DOM مباشرة
-    const targetNavLink = document.getElementById('nav-' + id);
-    if(targetNavLink) targetNavLink.classList.add('active');
+/* ─── NAV & THEME ─── */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const lnk = document.getElementById('nav-' + id);
+  if (lnk) lnk.classList.add('active');
+  if (id === 'prayer' && Object.keys(prayerTimes).length === 0) loadPrayers();
+}
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+function closeMenu()  { document.getElementById('navLinks').classList.remove('open'); }
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.getElementById('themeIcon');
+  if (body.getAttribute('data-theme') === 'dark') {
+    body.removeAttribute('data-theme');
+    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>';
+  } else {
+    body.setAttribute('data-theme', 'dark');
+    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"/>';
   }
+}
 
-  // دوال الـ Menu للموبايل
-  function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('open');
+/* ─── AUDIO ─── */
+function togglePlayback() {
+  const audio   = document.getElementById('quranAudio');
+  const btnText = document.getElementById('btnText');
+  const svgIcon = document.getElementById('svgIcon');
+  if (audio.paused) {
+    audio.play();
+    btnText.textContent = 'إيقاف البث المؤقت';
+    svgIcon.innerHTML   = '<path d="M2 1h3v12H2zm5 0h3v12H7z"/>';
+  } else {
+    audio.pause();
+    btnText.textContent = 'فتح البث الصوتي المباشر';
+    svgIcon.innerHTML   = '<path d="M1 1l10 6-10 6z"/>';
   }
+}
 
-  function closeMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.remove('open');
-  }
-
-  // التبديل بين الوضع المظلم والمضيء
-  function toggleTheme() {
-    const body = document.body;
-    const themeIcon = document.getElementById('themeIcon');
-    const currentTheme = body.getAttribute('data-theme');
-    
-    if (currentTheme === 'dark') {
-      body.removeAttribute('data-theme');
-      themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>';
-    } else {
-      body.setAttribute('data-theme', 'dark');
-      themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"/>';
-    }
-  }
-
-  function togglePlayback() {
-    const audio = document.getElementById('quranAudio');
-    const btnText = document.getElementById('btnText');
-    const svgIcon = document.getElementById('svgIcon');
-
-    if (audio.paused) {
-      audio.play();
-      btnText.textContent = "إيقاف البث المؤقت";
-      svgIcon.innerHTML = '<path d="M2 1h3v12H2zm5 0h3v12H7z"/>';
-    } else {
-      audio.pause();
-      btnText.textContent = "فتح البث الصوتي المباشر";
-      svgIcon.innerHTML = '<path d="M1 1l10 6-10 6z"/>';
-    }
-  }
-
-  const reciters = [
-    {
-      name: 'الشيخ محمد صديق المنشاوي',
-      laqab: 'الصوت الباكي',
-      init: 'م',
-      bio: 'وُلد بسوهاج ١٩٢٠، حفظ القرآن في الثامنة. تميَّز بصوت خاشع ذي مسحة حزن. سجَّل ختمتَين مرتلة ومجوَّدة. توفي ١٩٦٩ تاركًا أكثر من ١٥٠ تسجيلًا.',
-      tags: ['مرتل', 'مجوَّد', 'ختمة ٢٠٢٦ الجديدة'],
-      featured: true
-    },
-    {
-      name: 'الشيخ محمد رفعت',
-      laqab: 'أبو القرّاء',
-      init: 'ر',
-      bio: 'وُلد بالقاهرة ١٨٨٢، افتتح بثَّ الإذاعة المصرية عام ١٩٣٤. أول قارئ بالإذاعة. ترك ١٣٠٠ تلاوة لا تزال تُبثّ حتى اليوم.',
-      tags: ['أول قارئ إذاعي', 'مجوَّد', 'تلاوات نادرة'],
-      featured: false
-    },
-    {
-      name: 'الشيخ عبدالباسط عبدالصمد',
-      laqab: 'صوت السماء',
-      init: 'ع',
-      bio: 'وُلد بمصر العليا ١٩٢٧. اشتُهر بأسلوبه الفريد في التجويد والمقامات. سجَّل القرآن كاملًا عدة مرات. صوت يُعدّ من أجمل الأصوات القرآنية عالميًا.',
-      tags: ['مجوَّد', 'مرتل', 'تسجيلات دولية'],
-      featured: false
-    },
-    {
-      name: 'الشيخ محمود خليل الحصري',
-      laqab: 'شيخ عموم المقارئ',
-      init: 'ح',
-      bio: 'وُلد بكفر الشيخ ١٩١٧. شيخ عموم المقارئ المصرية. سجَّل القرآن بروايات متعددة وأسهم في توثيق علم التجويد.',
-      tags: ['مجوَّد', 'مرتل', 'عدة روايات'],
-      featured: false
-    },
-    {
-      name: 'الشيخ مصطفى إسماعيل',
-      laqab: 'أمير القرّاء',
-      init: 'إ',
-      bio: 'وُلد بالغربية ١٩٠٥. اشتُهر بسعة صدره الصوتي وتنوُّع مقاماته. يُعدّ أحد أعظم قرّاء مصر في القرن العشرين.',
-      tags: ['مجوَّد', 'تسجيلات نادرة'],
-      featured: false
-    },
-    {
-      name: 'الشيخ محمود علي البنا',
-      laqab: 'البلبل المصري',
-      init: 'ب',
-      bio: 'وُلد باليجيرة ١٩٢٦. تميَّز بعذوبة صوته وأداء المقامات. من أبرز وجوه الإذاعة المصرية لعقود.',
-      tags: ['مجوَّد', 'تسجيلات إذاعية'],
-      featured: false
-    },
-    {
-      name: 'الشيخ محمد محمود الطبلاوي',
-      laqab: 'شيخ القرّاء',
-      init: 'ط',
-      bio: 'وُلد بالقاهرة ١٩٣٨. من أبرز قرّاء الجيل المعاصر. يجمع بين عمق التجويد وجمال الأداء. قرأ في المسجد الحرام والأقصى.',
-      tags: ['معاصر', 'مجوَّد', 'تسجيلات متعددة'],
-      featured: false
-    },
-    {
-      name: 'الشيخ علي محمود',
-      laqab: 'شيخ المنشدين',
-      init: 'ع',
-      bio: 'رائد فن الإنشاد الديني في مصر. من أوائل القرّاء الذين سجَّلوا بالإذاعة المصرية. ترك إرثًا ثريًا من التواشيح والتلاوات.',
-      tags: ['تلاوات', 'تواشيح', 'تراث'],
-      featured: false
-    },
-    {
-      name: 'الشيخ أبو العينين شعيشع',
-      laqab: 'صوت الوجد',
-      init: 'ش',
-      bio: 'من أبرز قرّاء القرن العشرين. تميَّز بأسلوب أدائي عاطفي عميق. له تسجيلات إذاعية كثيرة لا تزال تُبثّ.',
-      tags: ['مجوَّد', 'تسجيلات إذاعية'],
-      featured: false
-    },
-    {
-      name: 'الشيخ طه الفشني',
-      laqab: 'العبقري الصوتي',
-      init: 'ف',
-      bio: 'اشتُهر بقدرته الفائقة على تطويع الصوت في المقامات المختلفة. من رواد التجويد الإذاعي في مصر.',
-      tags: ['مجوَّد', 'مقامات'],
-      featured: false
-    },
-    {
-      name: 'الشيخ كامل يوسف البهتيمي',
-      laqab: 'صاحب الأداء الفريد',
-      init: 'ك',
-      bio: 'من كبار قرّاء الإذاعة المصرية. اشتُهر بدقة أدائه وانضباط تجويده. شارك في تلاوات مشتركة مع المنشاوي.',
-      tags: ['مجوَّد', 'تلاوات مشتركة'],
-      featured: false
-    },
-    {
-      name: 'الشيخ راغب مصطفى غلوش',
-      laqab: 'المجوَّد الدقيق',
-      init: 'غ',
-      bio: 'متخصص في علم التجويد والقراءات. سجَّل القرآن بروايات متعددة. يُعدّ مرجعًا علميًا في ضبط أحكام التلاوة.',
-      tags: ['مجوَّد', 'عدة روايات', 'علمي'],
-      featured: false
-    },
-  ];
-
-  const grid = document.getElementById('reciters-grid');
-  reciters.forEach(r => {
-    const card = document.createElement('div');
-    card.className = 'reciter-card' + (r.featured ? ' featured' : '');
-    card.innerHTML = `
-      ${r.featured ? '<span class="featured-badge">⭐ مميز</span>' : ''}
-      <div class="reciter-header">
-        <div class="reciter-icon">${r.init}</div>
-        <div>
-          <div class="reciter-name">${r.name}</div>
-          <div class="reciter-laqab">${r.laqab}</div>
-        </div>
+/* ─── RECITERS ─── */
+const reciters = [
+  { name:'الشيخ محمد صديق المنشاوي', laqab:'الصوت الباكي', init:'م', bio:'وُلد بسوهاج ١٩٢٠، حفظ القرآن في الثامنة. تميَّز بصوت خاشع ذي مسحة حزن. سجَّل ختمتَين مرتلة ومجوَّدة. توفي ١٩٦٩ تاركًا أكثر من ١٥٠ تسجيلًا.', tags:['مرتل','مجوَّد','ختمة ٢٠٢٦ الجديدة'], featured:true },
+  { name:'الشيخ محمد رفعت', laqab:'أبو القرّاء', init:'ر', bio:'وُلد بالقاهرة ١٨٨٢، افتتح بثَّ الإذاعة المصرية عام ١٩٣٤. أول قارئ بالإذاعة. ترك ١٣٠٠ تلاوة لا تزال تُبثّ حتى اليوم.', tags:['أول قارئ إذاعي','مجوَّد','تلاوات نادرة'], featured:false },
+  { name:'الشيخ عبدالباسط عبدالصمد', laqab:'صوت السماء', init:'ع', bio:'وُلد بمصر العليا ١٩٢٧. اشتُهر بأسلوبه الفريد في التجويد والمقامات. سجَّل القرآن كاملًا عدة مرات. صوت يُعدّ من أجمل الأصوات القرآنية عالميًا.', tags:['مجوَّد','مرتل','تسجيلات دولية'], featured:false },
+  { name:'الشيخ محمود خليل الحصري', laqab:'شيخ عموم المقارئ', init:'ح', bio:'وُلد بكفر الشيخ ١٩١٧. شيخ عموم المقارئ المصرية. سجَّل القرآن بروايات متعددة وأسهم في توثيق علم التجويد.', tags:['مجوَّد','مرتل','عدة روايات'], featured:false },
+  { name:'الشيخ مصطفى إسماعيل', laqab:'أمير القرّاء', init:'إ', bio:'وُلد بالغربية ١٩٠٥. اشتُهر بسعة صدره الصوتي وتنوُّع مقاماته. يُعدّ أحد أعظم قرّاء مصر في القرن العشرين.', tags:['مجوَّد','تسجيلات نادرة'], featured:false },
+  { name:'الشيخ محمود علي البنا', laqab:'البلبل المصري', init:'ب', bio:'وُلد باليجيرة ١٩٢٦. تميَّز بعذوبة صوته وأداء المقامات. من أبرز وجوه الإذاعة المصرية لعقود.', tags:['مجوَّد','تسجيلات إذاعية'], featured:false },
+  { name:'الشيخ محمد محمود الطبلاوي', laqab:'شيخ القرّاء', init:'ط', bio:'وُلد بالقاهرة ١٩٣٨. من أبرز قرّاء الجيل المعاصر. يجمع بين عمق التجويد وجمال الأداء. قرأ في المسجد الحرام والأقصى.', tags:['معاصر','مجوَّد','تسجيلات متعددة'], featured:false },
+  { name:'الشيخ علي محمود', laqab:'شيخ المنشدين', init:'ع', bio:'رائد فن الإنشاد الديني في مصر. من أوائل القرّاء الذين سجَّلوا بالإذاعة المصرية. ترك إرثًا ثريًا من التواشيح والتلاوات.', tags:['تلاوات','تواشيح','تراث'], featured:false },
+  { name:'الشيخ أبو العينين شعيشع', laqab:'صوت الوجد', init:'ش', bio:'من أبرز قرّاء القرن العشرين. تميَّز بأسلوب أدائي عاطفي عميق. له تسجيلات إذاعية كثيرة لا تزال تُبثّ.', tags:['مجوَّد','تسجيلات إذاعية'], featured:false },
+  { name:'الشيخ طه الفشني', laqab:'العبقري الصوتي', init:'ف', bio:'اشتُهر بقدرته الفائقة على تطويع الصوت في المقامات المختلفة. من رواد التجويد الإذاعي في مصر.', tags:['مجوَّد','مقامات'], featured:false },
+  { name:'الشيخ كامل يوسف البهتيمي', laqab:'صاحب الأداء الفريد', init:'ك', bio:'من كبار قرّاء الإذاعة المصرية. اشتُهر بدقة أدائه وانضباط تجويده. شارك في تلاوات مشتركة مع المنشاوي.', tags:['مجوَّد','تلاوات مشتركة'], featured:false },
+  { name:'الشيخ راغب مصطفى غلوش', laqab:'المجوَّد الدقيق', init:'غ', bio:'متخصص في علم التجويد والقراءات. سجَّل القرآن بروايات متعددة. يُعدّ مرجعًا علميًا في ضبط أحكام التلاوة.', tags:['مجوَّد','عدة روايات','علمي'], featured:false },
+];
+const grid = document.getElementById('reciters-grid');
+reciters.forEach(r => {
+  const card = document.createElement('div');
+  card.className = 'reciter-card' + (r.featured ? ' featured' : '');
+  card.innerHTML = `
+    ${r.featured ? '<span class="featured-badge">⭐ مميز</span>' : ''}
+    <div class="reciter-header">
+      <div class="reciter-icon">${r.init}</div>
+      <div>
+        <div class="reciter-name">${r.name}</div>
+        <div class="reciter-laqab">${r.laqab}</div>
       </div>
-      <p class="reciter-bio">${r.bio}</p>
-      <div class="reciter-tags">${r.tags.map(t => `<span class="rtag">${t}</span>`).join('')}</div>
+    </div>
+    <p class="reciter-bio">${r.bio}</p>
+    <div class="reciter-tags">${r.tags.map(t=>`<span class="rtag">${t}</span>`).join('')}</div>
+  `;
+  grid.appendChild(card);
+});
+
+/* ─── PRAYER TIMES ─── */
+const prayersList = [
+  { key:'Fajr',    name:'الفجر',   icon:'🌙' },
+  { key:'Sunrise', name:'الشروق',  icon:'🌅' },
+  { key:'Dhuhr',   name:'الظهر',   icon:'☀️' },
+  { key:'Asr',     name:'العصر',   icon:'🌤️' },
+  { key:'Maghrib', name:'المغرب',  icon:'🌆' },
+  { key:'Isha',    name:'العشاء',  icon:'🌃' },
+];
+const govArabic = {
+  'Cairo':'القاهرة','Giza':'الجيزة','Alexandria':'الإسكندرية','Luxor':'الأقصر',
+  'Aswan':'أسوان','Assiut':'أسيوط','Sohag':'سوهاج','Qena':'قنا','Minya':'المنيا',
+  'Beni Suef':'بني سويف','Faiyum':'الفيوم','Port Said':'بورسعيد','Suez':'السويس',
+  'Ismailia':'الإسماعيلية','Damietta':'دمياط','Dakahlia':'الدقهلية','Sharqia':'الشرقية',
+  'Kafr El Sheikh':'كفر الشيخ','Gharbia':'الغربية','Monufia':'المنوفية','Qalyubia':'القليوبية',
+  'Beheira':'البحيرة','Matrouh':'مطروح','North Sinai':'شمال سيناء',
+  'South Sinai':'جنوب سيناء','Red Sea':'البحر الأحمر','New Valley':'الوادي الجديد'
+};
+let prayerTimes = {}, cdInterval = null;
+
+function padZ(n) { return String(n).padStart(2,'0'); }
+function toMins(t) { const [h,m]=t.split(':').map(Number); return h*60+m; }
+
+function getNextPrayer(obj) {
+  const now = new Date(), nm = now.getHours()*60+now.getMinutes();
+  const list = prayersList.filter(p=>p.key!=='Sunrise');
+  for (let p of list) {
+    const t = obj[p.key];
+    if (t && toMins(t) > nm) return { name:p.name, time:t, nextDay:false };
+  }
+  return { name:'الفجر (غدًا)', time:obj['Fajr'], nextDay:true };
+}
+
+function startCountdown(timeStr, nextDay) {
+  if (cdInterval) clearInterval(cdInterval);
+  function tick() {
+    const now = new Date();
+    const [h,m] = (timeStr||'00:00').split(':').map(Number);
+    const target = new Date(now); target.setHours(h,m,0,0);
+    if (nextDay || target <= now) target.setDate(target.getDate()+1);
+    let d = Math.max(0, Math.floor((target-now)/1000));
+    const hh=Math.floor(d/3600); d%=3600;
+    const mm=Math.floor(d/60), ss=d%60;
+    document.getElementById('cdH').textContent=padZ(hh);
+    document.getElementById('cdM').textContent=padZ(mm);
+    document.getElementById('cdS').textContent=padZ(ss);
+  }
+  tick();
+  cdInterval = setInterval(tick, 1000);
+}
+
+function renderPrayerCards(obj) {
+  const pg = document.getElementById('prayersGrid'); pg.innerHTML='';
+  const now = new Date(), nm = now.getHours()*60+now.getMinutes();
+  const next = getNextPrayer(obj);
+  prayersList.forEach(p => {
+    const t = obj[p.key]; if (!t) return;
+    const passed = toMins(t)<=nm && p.key!=='Sunrise';
+    const isNext = next.name===p.name;
+    const card = document.createElement('div');
+    card.className='prayer-card'+(isNext?' next-prayer':'')+(passed&&!isNext?' passed':'');
+    card.innerHTML=`
+      ${isNext?'<span class="next-badge">التالية</span>':''}
+      <span class="prayer-icon">${p.icon}</span>
+      <div class="prayer-name">${p.name}</div>
+      <div class="prayer-time">${t}</div>
     `;
-    grid.appendChild(card);
+    pg.appendChild(card);
   });
+  document.getElementById('nextPrayerName').textContent=next.name;
+  startCountdown(next.time, next.nextDay);
+}
+
+function updateDateRow(city) {
+  const now = new Date();
+  const hijri   = new Intl.DateTimeFormat('ar-SA-u-ca-islamic',{day:'numeric',month:'long',year:'numeric'}).format(now);
+  const gregory = new Intl.DateTimeFormat('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(now);
+  document.getElementById('dateRow').textContent=`${gregory} — ${hijri} | ${govArabic[city]||city}`;
+}
+
+async function loadPrayers() {
+  const city = document.getElementById('govSelect').value;
+  document.getElementById('loadingMsg').style.display='block';
+  document.getElementById('prayerContent').style.display='none';
+  document.getElementById('prayerErrorMsg').style.display='none';
+  updateDateRow(city);
+  const now=new Date(), ds=`${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`;
+  try {
+    const res = await fetch(`https://api.aladhan.com/v1/timingsByCity/${ds}?city=${encodeURIComponent(city)}&country=Egypt&method=5`);
+    if(!res.ok) throw new Error('خطأ في الاتصال بالخادم');
+    const data = await res.json();
+    if(data.code!==200) throw new Error('تعذّر جلب المواقيت');
+    prayerTimes = data.data.timings;
+    document.getElementById('loadingMsg').style.display='none';
+    document.getElementById('prayerContent').style.display='block';
+    renderPrayerCards(prayerTimes);
+  } catch(e) {
+    document.getElementById('loadingMsg').style.display='none';
+    const err=document.getElementById('prayerErrorMsg');
+    err.innerHTML=`<span class="news-icon">⚠️</span><div class="news-text"><strong>تعذّر تحميل المواقيت</strong><p>${e.message} — تحقق من الاتصال وأعد المحاولة.</p></div>`;
+    err.style.display='flex';
+  }
+}
+
+setInterval(()=>{ if(Object.keys(prayerTimes).length) renderPrayerCards(prayerTimes); }, 60000);
 </script>
 </body>
 </html>
