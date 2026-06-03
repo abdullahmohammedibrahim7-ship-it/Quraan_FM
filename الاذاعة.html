@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إذاعة القرآن الكريم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-950: #052e16;
+    --green-900: #14532d;
+    --green-800: #166534;
+    --green-700: #15803d;
+    --green-600: #16a34a;
+    --green-500: #22c55e;
+    --green-400: #4ade80;
+    --green-300: #86efac;
+    --green-200: #bbf7d0;
+    --green-100: #dcfce7;
+    --green-50:  #f0fdf4;
+    --gold: #b8960c;
+    --gold-light: #d4a80e;
+    --cream: #fdf8ee;
+    --text-main: #052e16;
+    --text-muted: #166534;
+    --shadow-green: rgba(22,101,52,0.13);
+    --card-bg: white;
+    --nav-bg: rgba(253,248,238,0.92);
+    --border-color: var(--green-200);
+  }
+
+  /* متغيرات الوضع الداكن (Dark Mode) */
+  [data-theme="dark"] {
+    --cream: #091a10;
+    --text-main: #e2f5e9;
+    --text-muted: #86efac;
+    --card-bg: #112a1b;
+    --nav-bg: rgba(9, 26, 16, 0.92);
+    --border-color: #164e2b;
+    --green-100: #164e2b;
+    --green-900: #6ee7b7;
+    --green-800: #22c55e;
+    --green-700: #4ade80;
+    --shadow-green: rgba(0,0,0,0.4);
+    --gold: #fbbf24;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Naskh Arabic', serif;
+    background: var(--cream);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 1.5rem;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Amiri', serif;
+    font-size: 1.15rem;
+    color: var(--text-main);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-logo:hover { opacity: 0.75; }
+  
+  .nav-logo-icon {
+    width: 34px; height: 34px;
+    background: #166534;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-icon svg { display: block; }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.92rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    background: var(--green-100);
+    color: var(--green-900);
+  }
+
+  /* زر الـ Dark Mode */
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: all 0.2s;
+  }
+  .theme-toggle:hover {
+    background: var(--green-100);
+  }
+
+  /* PAGES */
+  .page {
+    display: none;
+    min-height: 100vh;
+    padding-top: 62px;
+  }
+  .page.active { display: block; }
+
+  /* ===================== HOME ===================== */
+  #home {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 62px;
+  }
+  #home.active { display: flex; }
+
+  .home-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 40%, rgba(22,163,74,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,150,12,0.06) 0%, transparent 60%);
+  }
+
+  .geometric-border {
+    position: absolute;
+    top: 80px; left: 50%; transform: translateX(-50%);
+    width: min(560px, 90vw);
+    height: min(560px, 90vw);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: spin 60s linear infinite;
+  }
+  .geometric-border::before {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  .geometric-border::after {
+    content: '';
+    position: absolute;
+    inset: 40px;
+    border: 1px dashed var(--border-color);
+    border-radius: 50%;
+  }
+
+  @keyframes spin { to { transform: translateX(-50%) rotate(360deg); } }
+
+  .home-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 1.5rem;
+  }
+
+  .bismillah {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+    opacity: 0.85;
+  }
+
+  .home-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    color: var(--text-main);
+    line-height: 1.15;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  [data-theme="dark"] .home-title span {
+    color: #4ade80;
+  }
+  .home-title span {
+    color: #16a34a;
+    display: block;
+  }
+
+  .home-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.9;
+  }
+
+  .home-freq {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--green-100);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    padding: 0.45rem 1.2rem;
+    font-size: 0.88rem;
+    color: var(--green-900);
+    margin-bottom: 2.5rem;
+  }
+
+  .freq-dot {
+    width: 8px; height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .btn-listen {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: #166534;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.85rem 2rem;
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+
+  .btn-listen:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--shadow-green);
+  }
+
+  .play-icon {
+    width: 28px; height: 28px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ===================== LIVE ===================== */
+  #live {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 62px;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 100%);
+  }
+  #live.active { display: flex; }
+
+  .live-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    max-width: 440px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 40px var(--shadow-green);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #fee2e2;
+    color: #b91c1c;
+    border-radius: 20px;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  [data-theme="dark"] .live-badge {
+    background: #7f1d1d;
+    color: #fca5a5;
+  }
+
+  .live-dot {
+    width: 7px; height: 7px;
+    background: #ef4444;
+    border-radius: 50%;
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+
+  .live-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.7rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .live-sub {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  /* ===================== SHEIKH ===================== */
+  #sheikh {
+    display: none;
+    padding-top: 62px;
+  }
+  #sheikh.active { display: block; }
+
+  .sheikh-hero {
+    background: linear-gradient(135deg, #14532d 0%, #15803d 100%);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sheikh-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .sheikh-name {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .sheikh-laqab {
+    font-size: 0.95rem;
+    opacity: 0.75;
+    margin-bottom: 0.5rem;
+  }
+
+  .sheikh-dates {
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+
+  .sheikh-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .news-banner {
+    background: var(--green-100);
+    border: 1px solid var(--border-color);
+    border-right: 4px solid #16a34a;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+
+  .news-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+    margin-top: 0.1rem;
+  }
+
+  .news-text strong {
+    display: block;
+    color: var(--green-900);
+    font-size: 0.97rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .news-text p {
+    color: var(--text-main);
+    font-size: 0.87rem;
+    line-height: 1.7;
+  }
+
+  /* ===================== ABOUT ===================== */
+  #about {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 80px 1.5rem 3rem;
+    text-align: center;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 100%);
+  }
+  #about.active { display: flex; }
+
+  .about-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    max-width: 560px;
+    width: 100%;
+    box-shadow: 0 4px 30px var(--shadow-green);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .about-avatar {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #bbf7d0, #4ade80);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-family: 'Amiri', serif;
+    font-size: 1.6rem;
+    color: #052e16;
+  }
+
+  .about-name {
+    font-family: 'Amiri', serif;
+    font-size: 1.6rem;
+    color: var(--text-main);
+    margin-bottom: 0.3rem;
+  }
+
+  .about-role {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .about-dua {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    line-height: 1.9;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--green-100);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+  }
+
+  .quran-verse {
+    font-family: 'Amiri', serif;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    color: var(--text-main);
+    line-height: 2.2;
+    direction: rtl;
+    text-align: right;
+    background: var(--green-100);
+    border: 1px solid var(--border-color);
+    border-right: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-top: 1.5rem;
+  }
+
+  .verse-ref {
+    display: block;
+    text-align: left;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    font-family: 'Noto Naskh Arabic', serif;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    background: var(--card-bg);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .reciter-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .reciter-card:hover {
+    border-color: var(--green-300);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-green);
+  }
+  .reciter-card.featured {
+    border-color: #4ade80;
+    background: linear-gradient(135deg, var(--card-bg) 80%, var(--green-100));
+  }
+  .reciter-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+  .reciter-icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--green-100);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Amiri', serif;
+    font-size: 1.2rem;
+    color: var(--green-900);
+    flex-shrink: 0;
+  }
+  .reciter-card.featured .reciter-icon {
+    background: #166534;
+    color: white;
+  }
+  .reciter-name {
+    font-family: 'Amiri', serif;
+    font-size: 1.05rem;
+    color: var(--text-main);
+    margin-bottom: 0.15rem;
+    line-height: 1.3;
+  }
+  .reciter-laqab {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .reciter-bio {
+    font-size: 0.86rem;
+    color: var(--text-main);
+    opacity: 0.9;
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+  .reciter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .rtag {
+    background: var(--green-100);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.75rem;
+    color: var(--green-900);
+  }
+  .featured-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: #15803d;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-right">
+    <a class="nav-logo" href="#" onclick="showPage('live'); return false;">
+      <div class="nav-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="2" width="14" height="16" rx="2" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.2"/>
+          <line x1="10" y1="2" x2="10" y2="18" stroke="white" stroke-width="0.8" opacity="0.5"/>
+          <path d="M6 8 Q10 6 14 8" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M7 11 Q10 9.5 13 11" stroke="white" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          <path d="M8 14 Q10 13 12 14" stroke="white" stroke-width="1" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      ﴿ إذاعة القرآن الكريم ﴾
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">الرئيسية</a></li>
+      <li><a href="#" onclick="showPage('live')" id="nav-live">البث المباشر</a></li>
+      <li><a href="#" onclick="showPage('sheikh')" id="nav-sheikh">القرّاء</a></li>
+      <li><a href="#" onclick="showPage('about')" id="nav-about">عن الموقع</a></li>
+    </ul>
+  </div>
+
+  <button class="theme-toggle" onclick="toggleTheme()" title="تبديل المظهر">
+    <svg id="themeIcon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+    </svg>
+  </button>
+</nav>
+
+<section id="home" class="page active">
+  <div class="home-bg"></div>
+  <div class="geometric-border"></div>
+  <div class="home-content">
+    <p class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <h1 class="home-title">
+      إذاعة
+      <span>القرآن الكريم</span>
+    </h1>
+    <p class="home-subtitle">
+      بث مستمر على مدار الساعة من القاهرة<br>
+      تلاوات لكبار القراء · برامج دينية · كنوز قرآنية
+    </p>
+    <div class="home-freq">
+      <span class="freq-dot"></span>
+      إذاعة القرآن الكريم — FM 98.2 · القاهرة
+    </div>
+    <br>
+    <button class="btn-listen" onclick="showPage('live')">
+      <span class="play-icon">
+        <svg width="12" height="14" viewBox="0 0 12 14" fill="white"><path d="M1 1l10 6-10 6z"/></svg>
+      </span>
+      استمع الآن
+    </button>
+  </div>
+</section>
+
+<section id="live" class="page">
+  <div class="live-card">
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      بث مباشر
+    </div>
+
+    <h2 class="live-title">إذاعة القرآن الكريم</h2>
+    <p class="live-sub">من القاهرة · FM 98.2 · الهيئة الوطنية للإعلام</p>
+
+    <audio id="quranAudio" preload="none">
+      <source src="https://stream.radiojar.com/8s5u5tpdtwzuv" type="audio/mpeg">
+    </audio>
+
+    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1.5rem; text-align:center;">
+      البث الصوتي المباشر — إذاعة القرآن الكريم القاهرة FM 98.2
+    </p>
+
+    <button id="playBtn" class="btn-listen" onclick="togglePlayback()" style="display:inline-flex; justify-content:center; width:100%; border:none; box-sizing:border-box;">
+      <span class="play-icon" id="btnIcon">
+        <svg id="svgIcon" width="12" height="14" viewBox="0 0 12 14" fill="white">
+          <path d="M1 1l10 6-10 6z"/>
+        </svg>
+      </span>
+      <span id="btnText">فتح البث الصوتي المباشر</span>
+    </button>
+  </div>
+</section>
+
+<section id="sheikh" class="page">
+  <div class="sheikh-hero" style="padding:3rem 2rem 2rem;">
+    <h2 class="sheikh-name" style="font-size:clamp(1.6rem,5vw,2.4rem);">قرّاء إذاعة القرآن الكريم</h2>
+    <p class="sheikh-laqab">أعلام التلاوة · الجيل الذهبي للإذاعة المصرية</p>
+    <p class="sheikh-dates">إذاعة القرآن الكريم من القاهرة · منذ ١٩٦٤</p>
+  </div>
+
+  <div class="sheikh-body">
+    <div class="news-banner">
+      <span class="news-icon">📢</span>
+      <div class="news-text">
+        <strong>خبر عاجل · يونيو ٢٠٢٦</strong>
+        <p>بدأت إذاعة القرآن الكريم بثَّ ختمة مرتلة نادرة للشيخ المنشاوي للمرة الأولى منذ تسجيلها في الستينيات — بعد ٦٠ عامًا من حفظها في الأرشيف.</p>
+      </div>
+    </div>
+
+    <div id="reciters-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; margin-bottom:2rem;"></div>
+  </div>
+</section>
+
+<section id="about" class="page">
+  <div class="about-card">
+    <div class="about-avatar">ع</div>
+    <h2 class="about-name">عبدالله محمد إبراهيم</h2>
+    <p class="about-role">طالب بكلية الحاسبات والمعلومات — جامعة القاهرة</p>
+
+    <p class="about-dua">
+      أسأل الله العظيم أن يوفقني وإياكم في الدنيا والآخرة، وأن يرزقنا من واسع نعيمه ورحمته، وأن يتقبَّل منا صالح الأعمال.
+    </p>
+
+    <div class="quran-verse">
+      فَإِذَا قَضَيْتُم مَّنَـٰسِكَكُمْ فَٱذْكُرُوا۟ ٱللَّهَ كَذِكْرِكُمْ ءَابَآءَكُمْ أَوْ أَشَدَّ ذِكْرًۭا ۗ فَمِنَ ٱلنَّاسِ مَن يَقُولُ رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا وَمَا لَهُۥ فِى ٱلْـَٔاخِرَةِ مِنْ خَلَـٰقٍۢ ﴿٢٠٠﴾ وَمِنْهُم مَّن يَقُولُ رَبَّنَآ ءَاتِنَا فِى ٱلدُّنْيَا حَسَنَةًۭ وَفِى ٱلْـَٔاخِرَةِ حَسَنَةًۭ وَقِنَا عَذَابَ ٱلنَّارِ ﴿٢٠١﴾
+      <span class="verse-ref">سورة البقرة — الآيتان ٢٠٠–٢٠١</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  إذاعة القرآن الكريم من القاهرة · FM 98.2 · جميع الحقوق محفوظة
+</footer>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('nav-' + id).classList.add('active');
+  }
+
+  // التبديل بين الوضع المظلم والمضيء
+  function toggleTheme() {
+    const body = document.body;
+    const themeIcon = document.getElementById('themeIcon');
+    const currentTheme = body.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+      body.removeAttribute('data-theme');
+      // أيقونة القمر للوضع الفاتح
+      themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>';
+    } else {
+      body.setAttribute('data-theme', 'dark');
+      // أيقونة الشمس للوضع الداكن
+      themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"/>';
+    }
+  }
+
+  function togglePlayback() {
+    const audio = document.getElementById('quranAudio');
+    const btnText = document.getElementById('btnText');
+    const svgIcon = document.getElementById('svgIcon');
+
+    if (audio.paused) {
+      audio.play();
+      btnText.textContent = "إيقاف البث المؤقت";
+      svgIcon.innerHTML = '<path d="M2 1h3v12H2zm5 0h3v12H7z"/>';
+    } else {
+      audio.pause();
+      btnText.textContent = "فتح البث الصوتي المباشر";
+      svgIcon.innerHTML = '<path d="M1 1l10 6-10 6z"/>';
+    }
+  }
+
+  const reciters = [
+    {
+      name: 'الشيخ محمد صديق المنشاوي',
+      laqab: 'الصوت الباكي',
+      init: 'م',
+      bio: 'وُلد بسوهاج ١٩٢٠، حفظ القرآن في الثامنة. تميَّز بصوت خاشع ذي مسحة حزن. سجَّل ختمتَين مرتلة ومجوَّدة. توفي ١٩٦٩ تاركًا أكثر من ١٥٠ تسجيلًا.',
+      tags: ['مرتل', 'مجوَّد', 'ختمة ٢٠٢٦ الجديدة'],
+      featured: true
+    },
+    {
+      name: 'الشيخ محمد رفعت',
+      laqab: 'أبو القرّاء',
+      init: 'ر',
+      bio: 'وُلد بالقاهرة ١٨٨٢، افتتح بثَّ الإذاعة المصرية عام ١٩٣٤. أول قارئ بالإذاعة. ترك ١٣٠٠ تلاوة لا تزال تُبثّ حتى اليوم.',
+      tags: ['أول قارئ إذاعي', 'مجوَّد', 'تلاوات نادرة'],
+      featured: false
+    },
+    {
+      name: 'الشيخ عبدالباسط عبدالصمد',
+      laqab: 'صوت السماء',
+      init: 'ع',
+      bio: 'وُلد بمصر العليا ١٩٢٧. اشتُهر بأسلوبه الفريد في التجويد والمقامات. سجَّل القرآن كاملًا عدة مرات. صوت يُعدّ من أجمل الأصوات القرآنية عالميًا.',
+      tags: ['مجوَّد', 'مرتل', 'تسجيلات دولية'],
+      featured: false
+    },
+    {
+      name: 'الشيخ محمود خليل الحصري',
+      laqab: 'شيخ عموم المقارئ',
+      init: 'ح',
+      bio: 'وُلد بكفر الشيخ ١٩١٧. شيخ عموم المقارئ المصرية. سجَّل القرآن بروايات متعددة وأسهم في توثيق علم التجويد.',
+      tags: ['مجوَّد', 'مرتل', 'عدة روايات'],
+      featured: false
+    },
+    {
+      name: 'الشيخ مصطفى إسماعيل',
+      laqab: 'أمير القرّاء',
+      init: 'إ',
+      bio: 'وُلد بالغربية ١٩٠٥. اشتُهر بسعة صدره الصوتي وتنوُّع مقاماته. يُعدّ أحد أعظم قرّاء مصر في القرن العشرين.',
+      tags: ['مجوَّد', 'تسجيلات نادرة'],
+      featured: false
+    },
+    {
+      name: 'الشيخ محمود علي البنا',
+      laqab: 'البلبل المصري',
+      init: 'ب',
+      bio: 'وُلد باليجيرة ١٩٢٦. تميَّز بعذوبة صوته وأداء المقامات. من أبرز وجوه الإذاعة المصرية لعقود.',
+      tags: ['مجوَّد', 'تسجيلات إذاعية'],
+      featured: false
+    },
+    {
+      name: 'الشيخ محمد محمود الطبلاوي',
+      laqab: 'شيخ القرّاء',
+      init: 'ط',
+      bio: 'وُلد بالقاهرة ١٩٣٨. من أبرز قرّاء الجيل المعاصر. يجمع بين عمق التجويد وجمال الأداء. قرأ في المسجد الحرام والأقصى.',
+      tags: ['معاصر', 'مجوَّد', 'تسجيلات متعددة'],
+      featured: false
+    },
+    {
+      name: 'الشيخ علي محمود',
+      laqab: 'شيخ المنشدين',
+      init: 'ع',
+      bio: 'رائد فن الإنشاد الديني في مصر. من أوائل القرّاء الذين سجَّلوا بالإذاعة المصرية. ترك إرثًا ثريًا من التواشيح والتلاوات.',
+      tags: ['تلاوات', 'تواشيح', 'تراث'],
+      featured: false
+    },
+    {
+      name: 'الشيخ أبو العينين شعيشع',
+      laqab: 'صوت الوجد',
+      init: 'ش',
+      bio: 'من أبرز قرّاء القرن العشرين. تميَّز بأسلوب أدائي عاطفي عميق. له تسجيلات إذاعية كثيرة لا تزال تُبثّ.',
+      tags: ['مجوَّد', 'تسجيلات إذاعية'],
+      featured: false
+    },
+    {
+      name: 'الشيخ طه الفشني',
+      laqab: 'العبقري الصوتي',
+      init: 'ف',
+      bio: 'اشتُهر بقدرته الفائقة على تطويع الصوت في المقامات المختلفة. من رواد التجويد الإذاعي في مصر.',
+      tags: ['مجوَّد', 'مقامات'],
+      featured: false
+    },
+    {
+      name: 'الشيخ كامل يوسف البهتيمي',
+      laqab: 'صاحب الأداء الفريد',
+      init: 'ك',
+      bio: 'من كبار قرّاء الإذاعة المصرية. اشتُهر بدقة أدائه وانضباط تجويده. شارك في تلاوات مشتركة مع المنشاوي.',
+      tags: ['مجوَّد', 'تلاوات مشتركة'],
+      featured: false
+    },
+    {
+      name: 'الشيخ راغب مصطفى غلوش',
+      laqab: 'المجوَّد الدقيق',
+      init: 'غ',
+      bio: 'متخصص في علم التجويد والقراءات. سجَّل القرآن بروايات متعددة. يُعدّ مرجعًا علميًا في ضبط أحكام التلاوة.',
+      tags: ['مجوَّد', 'عدة روايات', 'علمي'],
+      featured: false
+    },
+  ];
+
+  const grid = document.getElementById('reciters-grid');
+  reciters.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'reciter-card' + (r.featured ? ' featured' : '');
+    card.innerHTML = `
+      ${r.featured ? '<span class="featured-badge">⭐ مميز</span>' : ''}
+      <div class="reciter-header">
+        <div class="reciter-icon">${r.init}</div>
+        <div>
+          <div class="reciter-name">${r.name}</div>
+          <div class="reciter-laqab">${r.laqab}</div>
+        </div>
+      </div>
+      <p class="reciter-bio">${r.bio}</p>
+      <div class="reciter-tags">${r.tags.map(t => `<span class="rtag">${t}</span>`).join('')}</div>
+    `;
+    grid.appendChild(card);
+  });
+</script>
+</body>
+</html>
