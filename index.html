@@ -79,6 +79,15 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 769px) {
+    .nav-right {
+      justify-content: flex-start;
+      width: auto;
+    }
   }
 
   .nav-logo {
@@ -118,6 +127,7 @@
     padding: 0.4rem 0.85rem;
     border-radius: 20px;
     transition: all 0.2s;
+    white-space: nowrap;
   }
 
   .nav-links a:hover, .nav-links a.active {
@@ -125,7 +135,25 @@
     color: var(--green-900);
   }
 
-  /* زر الـ Dark Mode */
+  /* زر القائمة للموبايل (Menu Toggle) */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* زر الـ Dark Mode وتنسيق الأزرار اليسارية */
+  .nav-left-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   .theme-toggle {
     background: none;
     border: 1px solid var(--border-color);
@@ -141,6 +169,38 @@
   }
   .theme-toggle:hover {
     background: var(--green-100);
+  }
+
+  /* شاشات الموبايل والتابلت الصغيرة */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 62px;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem;
+      gap: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-links a {
+      display: block;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+    }
   }
 
   /* PAGES */
@@ -204,25 +264,27 @@
   .home-content {
     position: relative;
     z-index: 2;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1rem;
+    width: 100%;
+    max-width: 600px;
   }
 
   .bismillah {
     font-family: 'Amiri', serif;
-    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-size: clamp(1.1rem, 4vw, 1.7rem);
     color: var(--gold);
     letter-spacing: 0.05em;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     opacity: 0.85;
   }
 
   .home-title {
     font-family: 'Amiri', serif;
-    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-size: clamp(2.2rem, 8vw, 5rem);
     color: var(--text-main);
-    line-height: 1.15;
+    line-height: 1.2;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   [data-theme="dark"] .home-title span {
@@ -234,13 +296,13 @@
   }
 
   .home-subtitle {
-    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-size: clamp(0.85rem, 3.5vw, 1.05rem);
     color: var(--text-muted);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.9;
+    line-height: 1.8;
   }
 
   .home-freq {
@@ -250,10 +312,11 @@
     background: var(--green-100);
     border: 1px solid var(--border-color);
     border-radius: 30px;
-    padding: 0.45rem 1.2rem;
-    font-size: 0.88rem;
+    padding: 0.5rem 1rem;
+    font-size: clamp(0.75rem, 3vw, 0.88rem);
     color: var(--green-900);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
+    max-width: 100%;
   }
 
   .freq-dot {
@@ -261,6 +324,7 @@
     background: #22c55e;
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
   }
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
@@ -275,9 +339,9 @@
     color: white;
     border: none;
     border-radius: 50px;
-    padding: 0.85rem 2rem;
+    padding: 0.8rem 1.8rem;
     font-family: 'Noto Naskh Arabic', serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.25s;
     text-decoration: none;
@@ -294,6 +358,7 @@
     background: rgba(255,255,255,0.2);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
   }
 
   /* ===================== LIVE ===================== */
@@ -303,7 +368,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding-top: 62px;
+    padding: 80px 1rem 2rem;
     background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 100%);
   }
   #live.active { display: flex; }
@@ -312,9 +377,9 @@
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 24px;
-    padding: 2.5rem 2rem;
+    padding: 2rem 1.5rem;
     max-width: 440px;
-    width: 90%;
+    width: 100%;
     text-align: center;
     box-shadow: 0 4px 40px var(--shadow-green);
     transition: background 0.3s, border-color 0.3s;
@@ -346,13 +411,13 @@
 
   .live-title {
     font-family: 'Amiri', serif;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     color: var(--text-main);
     margin-bottom: 0.5rem;
   }
 
   .live-sub {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     margin-bottom: 2rem;
   }
@@ -366,7 +431,7 @@
 
   .sheikh-hero {
     background: linear-gradient(135deg, #14532d 0%, #15803d 100%);
-    padding: 4rem 2rem 3rem;
+    padding: 3rem 1rem 2rem;
     text-align: center;
     color: white;
     position: relative;
@@ -382,25 +447,25 @@
 
   .sheikh-name {
     font-family: 'Amiri', serif;
-    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    font-size: clamp(1.5rem, 5vw, 2.4rem);
     margin-bottom: 0.5rem;
   }
 
   .sheikh-laqab {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     opacity: 0.75;
     margin-bottom: 0.5rem;
   }
 
   .sheikh-dates {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     opacity: 0.6;
   }
 
   .sheikh-body {
-    max-width: 720px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1rem;
   }
 
   .news-banner {
@@ -408,7 +473,7 @@
     border: 1px solid var(--border-color);
     border-right: 4px solid #16a34a;
     border-radius: 10px;
-    padding: 1rem 1.25rem;
+    padding: 1rem;
     margin-bottom: 2rem;
     display: flex;
     gap: 0.8rem;
@@ -424,13 +489,13 @@
   .news-text strong {
     display: block;
     color: var(--green-900);
-    font-size: 0.97rem;
+    font-size: 0.95rem;
     margin-bottom: 0.25rem;
   }
 
   .news-text p {
     color: var(--text-main);
-    font-size: 0.87rem;
+    font-size: 0.85rem;
     line-height: 1.7;
   }
 
@@ -441,7 +506,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 80px 1.5rem 3rem;
+    padding: 80px 1rem 2rem;
     text-align: center;
     background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 100%);
   }
@@ -451,7 +516,7 @@
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 20px;
-    padding: 2.5rem 2rem;
+    padding: 2rem 1.25rem;
     max-width: 560px;
     width: 100%;
     box-shadow: 0 4px 30px var(--shadow-green);
@@ -471,22 +536,22 @@
 
   .about-name {
     font-family: 'Amiri', serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: var(--text-main);
     margin-bottom: 0.3rem;
   }
 
   .about-role {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     margin-bottom: 0.8rem;
   }
 
   .about-dua {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-main);
-    line-height: 1.9;
-    margin-bottom: 2rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
     padding: 1rem;
     background: var(--green-100);
     border-radius: 10px;
@@ -495,23 +560,23 @@
 
   .quran-verse {
     font-family: 'Amiri', serif;
-    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
     color: var(--text-main);
-    line-height: 2.2;
+    line-height: 2.1;
     direction: rtl;
     text-align: right;
     background: var(--green-100);
     border: 1px solid var(--border-color);
     border-right: 3px solid var(--gold);
     border-radius: 10px;
-    padding: 1.2rem 1.4rem;
+    padding: 1rem;
     margin-top: 1.5rem;
   }
 
   .verse-ref {
     display: block;
     text-align: left;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     margin-top: 0.6rem;
     font-family: 'Noto Naskh Arabic', serif;
@@ -519,8 +584,8 @@
 
   footer {
     text-align: center;
-    padding: 1.5rem;
-    font-size: 0.8rem;
+    padding: 1.5rem 1rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
     border-top: 1px solid var(--border-color);
     background: var(--card-bg);
@@ -578,10 +643,10 @@
     color: var(--text-muted);
   }
   .reciter-bio {
-    font-size: 0.86rem;
+    font-size: 0.84rem;
     color: var(--text-main);
     opacity: 0.9;
-    line-height: 1.75;
+    line-height: 1.7;
     margin-bottom: 0.75rem;
   }
   .reciter-tags {
@@ -594,7 +659,7 @@
     border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 0.2rem 0.65rem;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--green-900);
   }
   .featured-badge {
@@ -602,7 +667,7 @@
     top: 10px; left: 10px;
     background: #15803d;
     color: white;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     padding: 0.2rem 0.55rem;
     border-radius: 20px;
   }
@@ -612,7 +677,10 @@
 
 <nav>
   <div class="nav-right">
-    <a class="nav-logo" href="#" onclick="showPage('live'); return false;">
+    <button class="menu-toggle" onclick="toggleMenu()" title="القائمة">
+      ☰
+    </button>
+    <a class="nav-logo" href="#" onclick="showPage('live'); closeMenu(); return false;">
       <div class="nav-logo-icon">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="3" y="2" width="14" height="16" rx="2" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1.2"/>
@@ -624,19 +692,21 @@
       </div>
       ﴿ إذاعة القرآن الكريم ﴾
     </a>
-    <ul class="nav-links">
-      <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">الرئيسية</a></li>
-      <li><a href="#" onclick="showPage('live')" id="nav-live">البث المباشر</a></li>
-      <li><a href="#" onclick="showPage('sheikh')" id="nav-sheikh">القرّاء</a></li>
-      <li><a href="#" onclick="showPage('about')" id="nav-about">عن الموقع</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showPage('home'); closeMenu();" class="active" id="nav-home">الرئيسية</a></li>
+      <li><a href="#" onclick="showPage('live'); closeMenu();" id="nav-live">البث المباشر</a></li>
+      <li><a href="#" onclick="showPage('sheikh'); closeMenu();" id="nav-sheikh">القرّاء</a></li>
+      <li><a href="#" onclick="showPage('about'); closeMenu();" id="nav-about">عن الموقع</a></li>
     </ul>
   </div>
 
-  <button class="theme-toggle" onclick="toggleTheme()" title="تبديل المظهر">
-    <svg id="themeIcon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-    </svg>
-  </button>
+  <div class="nav-left-controls">
+    <button class="theme-toggle" onclick="toggleTheme()" title="تبديل المظهر">
+      <svg id="themeIcon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+      </svg>
+    </button>
+  </div>
 </nav>
 
 <section id="home" class="page active">
@@ -696,8 +766,8 @@
 </section>
 
 <section id="sheikh" class="page">
-  <div class="sheikh-hero" style="padding:3rem 2rem 2rem;">
-    <h2 class="sheikh-name" style="font-size:clamp(1.6rem,5vw,2.4rem);">قرّاء إذاعة القرآن الكريم</h2>
+  <div class="sheikh-hero">
+    <h2 class="sheikh-name">قرّاء إذاعة القرآن الكريم</h2>
     <p class="sheikh-laqab">أعلام التلاوة · الجيل الذهبي للإذاعة المصرية</p>
     <p class="sheikh-dates">إذاعة القرآن الكريم من القاهرة · منذ ١٩٦٤</p>
   </div>
@@ -741,7 +811,21 @@
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    document.getElementById('nav-' + id).classList.add('active');
+    
+    // للتعامل مع العناصر اللي ممكن متكونش موجودة في الـ DOM مباشرة
+    const targetNavLink = document.getElementById('nav-' + id);
+    if(targetNavLink) targetNavLink.classList.add('active');
+  }
+
+  // دوال الـ Menu للموبايل
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('open');
+  }
+
+  function closeMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.remove('open');
   }
 
   // التبديل بين الوضع المظلم والمضيء
@@ -752,11 +836,9 @@
     
     if (currentTheme === 'dark') {
       body.removeAttribute('data-theme');
-      // أيقونة القمر للوضع الفاتح
       themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>';
     } else {
       body.setAttribute('data-theme', 'dark');
-      // أيقونة الشمس للوضع الداكن
       themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"/>';
     }
   }
